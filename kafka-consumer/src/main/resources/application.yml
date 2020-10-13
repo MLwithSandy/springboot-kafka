@@ -1,0 +1,8 @@
+spring:
+  kafka:
+    consumer:
+      group-id: kafka-consumer
+      bootstrap-servers: http://127.0.0.1:9092
+      enable-auto-commit: true
+  application:
+    name: kafka-consumer

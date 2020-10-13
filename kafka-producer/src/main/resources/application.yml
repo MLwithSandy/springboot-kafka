@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    bootstrap-servers: http://127.0.0.1:9092
+  application:
+    name: kafka-producer
+
+
