@@ -16,8 +16,7 @@ public class Image {
     return "Image{" + "name='" + name + '\'' + ", size=" + size + ", type='" + type + '\'' + '}';
   }
 
-  public Image() {
-  }
+  public Image() {}
 
   public String getName() {
     return name;

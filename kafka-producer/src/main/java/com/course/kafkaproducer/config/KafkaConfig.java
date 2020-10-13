@@ -13,21 +13,19 @@ import org.springframework.kafka.core.ProducerFactory;
 @Configuration
 public class KafkaConfig {
 
-    @Autowired
-    private KafkaProperties kafkaProperties;
+  @Autowired private KafkaProperties kafkaProperties;
 
-    @Bean
-    public ProducerFactory<String, String> producerFactory(){
-        var properties = kafkaProperties.buildProducerProperties();
+  @Bean
+  public ProducerFactory<String, String> producerFactory() {
+    var properties = kafkaProperties.buildProducerProperties();
 
-        properties.put(ProducerConfig.METADATA_MAX_AGE_CONFIG, "180000");
+    properties.put(ProducerConfig.METADATA_MAX_AGE_CONFIG, "180000");
 
-        return new DefaultKafkaProducerFactory<String, String>(properties);
-    }
+    return new DefaultKafkaProducerFactory<String, String>(properties);
+  }
 
-    @Bean
-    public KafkaTemplate<String, String> kafkaTemplate(){
-        return new KafkaTemplate<String, String>(producerFactory());
-    }
-
+  @Bean
+  public KafkaTemplate<String, String> kafkaTemplate() {
+    return new KafkaTemplate<String, String>(producerFactory());
+  }
 }

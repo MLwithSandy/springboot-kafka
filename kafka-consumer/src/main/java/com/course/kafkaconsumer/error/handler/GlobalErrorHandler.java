@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.kafka.listener.ConsumerAwareErrorHandler;
 
 public class GlobalErrorHandler implements ConsumerAwareErrorHandler {
-    private static final Logger log = LoggerFactory.getLogger(GlobalErrorHandler.class);
+  private static final Logger log = LoggerFactory.getLogger(GlobalErrorHandler.class);
 
-    @Override
-    public void handle(Exception e, ConsumerRecord<?, ?> consumerRecord, Consumer<?, ?> consumer) {
-        log.warn("Global error handler for message {}", consumerRecord.value().toString());
-    }
+  @Override
+  public void handle(Exception e, ConsumerRecord<?, ?> consumerRecord, Consumer<?, ?> consumer) {
+    log.warn("Global error handler for message {}", consumerRecord.value().toString());
+  }
 }

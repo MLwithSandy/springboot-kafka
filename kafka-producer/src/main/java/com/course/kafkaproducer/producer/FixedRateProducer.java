@@ -7,19 +7,18 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-//@Service
+// @Service
 public class FixedRateProducer {
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+  @Autowired private KafkaTemplate<String, String> kafkaTemplate;
 
-    private int i = 0;
+  private int i = 0;
 
-    private Logger log = LoggerFactory.getLogger(FixedRateProducer.class);
+  private Logger log = LoggerFactory.getLogger(FixedRateProducer.class);
 
-    @Scheduled(fixedRate = 1000)
-    public void sendMessage() {
-        i++;
-        log.info("i is " + i);
-        kafkaTemplate.send("t_fixedrate", "Fixed rate" + i);
-    }
+  @Scheduled(fixedRate = 1000)
+  public void sendMessage() {
+    i++;
+    log.info("i is " + i);
+    kafkaTemplate.send("t_fixedrate", "Fixed rate" + i);
+  }
 }

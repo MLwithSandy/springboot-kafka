@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-//@Service
+// @Service
 public class CommodityNotificationConsumer {
-    private ObjectMapper objectMapper = new ObjectMapper();
-    private static final Logger log = LoggerFactory.getLogger(CommodityDashboardConsumer.class);
+  private ObjectMapper objectMapper = new ObjectMapper();
+  private static final Logger log = LoggerFactory.getLogger(CommodityDashboardConsumer.class);
 
-    @KafkaListener(topics = "t_comodity", groupId = "cg-notification")
-    public void consume(String message)
-            throws JsonProcessingException, JsonMappingException, IOException {
-        var commodity = objectMapper.readValue(message, Commodity.class);
-        log.info("Notification logic for {}", commodity);
-    }
+  @KafkaListener(topics = "t_comodity", groupId = "cg-notification")
+  public void consume(String message)
+      throws JsonProcessingException, JsonMappingException, IOException {
+    var commodity = objectMapper.readValue(message, Commodity.class);
+    log.info("Notification logic for {}", commodity);
+  }
 }

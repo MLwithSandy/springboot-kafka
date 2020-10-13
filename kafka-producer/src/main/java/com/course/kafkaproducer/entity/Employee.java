@@ -8,43 +8,43 @@ import java.time.LocalDate;
 import java.util.Locale;
 
 public class Employee {
-    @JsonProperty("employee_id")
-    private String employeeId;
+  @JsonProperty("employee_id")
+  private String employeeId;
 
-    private String name;
+  private String name;
 
-    @JsonProperty("birth_date")
-    @JsonSerialize(using = CustomLocalDateSerializer.class)
-    private LocalDate birthDate;
+  @JsonProperty("birth_date")
+  @JsonSerialize(using = CustomLocalDateSerializer.class)
+  private LocalDate birthDate;
 
-    public Employee(String employeeId, String name, LocalDate birthDate) {
-        super();
-        this.employeeId = employeeId;
-        this.name = name;
-        this.birthDate = birthDate;
-    }
+  public Employee(String employeeId, String name, LocalDate birthDate) {
+    super();
+    this.employeeId = employeeId;
+    this.name = name;
+    this.birthDate = birthDate;
+  }
 
-    public String getEmployeeId() {
-        return employeeId;
-    }
+  public String getEmployeeId() {
+    return employeeId;
+  }
 
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
-    }
+  public void setEmployeeId(String employeeId) {
+    this.employeeId = employeeId;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
+  public LocalDate getBirthDate() {
+    return birthDate;
+  }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
+  public void setBirthDate(LocalDate birthDate) {
+    this.birthDate = birthDate;
+  }
 }

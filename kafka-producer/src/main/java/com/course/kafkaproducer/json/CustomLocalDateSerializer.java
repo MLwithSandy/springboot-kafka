@@ -11,21 +11,21 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 public class CustomLocalDateSerializer extends StdSerializer<LocalDate> {
 
-    private static final long serialVersionUID = 1L;
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+  private static final long serialVersionUID = 1L;
+  private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 
-    public CustomLocalDateSerializer() {
-        this(null);
-    }
+  public CustomLocalDateSerializer() {
+    this(null);
+  }
 
-    public CustomLocalDateSerializer(Class<LocalDate> t) {
-        super(t);
-    }
+  public CustomLocalDateSerializer(Class<LocalDate> t) {
+    super(t);
+  }
 
-    @Override
-    public void serialize(LocalDate value, JsonGenerator gen, SerializerProvider arg2)
-            throws IOException, JsonProcessingException {
+  @Override
+  public void serialize(LocalDate value, JsonGenerator gen, SerializerProvider arg2)
+      throws IOException, JsonProcessingException {
 
-        gen.writeString(formatter.format(value));
-    }
+    gen.writeString(formatter.format(value));
+  }
 }

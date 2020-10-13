@@ -7,15 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-//@Service
+// @Service
 public class SimpleNumberProducer {
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+  @Autowired private KafkaTemplate<String, String> kafkaTemplate;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+  private ObjectMapper objectMapper = new ObjectMapper();
 
-    public void send(SimpleNumber simpleNumber) throws JsonProcessingException {
-        var json = objectMapper.writeValueAsString(simpleNumber);
-        kafkaTemplate.send("t_simple_number", json);
-    }
+  public void send(SimpleNumber simpleNumber) throws JsonProcessingException {
+    var json = objectMapper.writeValueAsString(simpleNumber);
+    kafkaTemplate.send("t_simple_number", json);
+  }
 }

@@ -16,30 +16,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import java.time.LocalDate;
 
 @SpringBootApplication
-//@EnableScheduling
+// @EnableScheduling
 public class KafkaProducerApplication implements CommandLineRunner {
 
+  public static void main(String[] args) {
+    SpringApplication.run(KafkaProducerApplication.class, args);
+  }
 
-    public static void main(String[] args) {
-        SpringApplication.run(KafkaProducerApplication.class, args);
-    }
-
-    @Autowired
-    private InvoiceService invoiceService;
-
-    @Autowired
-    private InvoiceProducer invoiceProducer;
-
-    @Override
-    public void run(String... args) throws Exception {
-
-        for(int i = 0; i < 10; i++){
-            var invoice = invoiceService.generateInvoice();
-
-            if(i >= 5){
-                invoice.setAmount(-1);
-            }
-            invoiceProducer.send(invoice);
-        }
-    }
+  @Override
+  public void run(String... args) throws Exception {}
 }

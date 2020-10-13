@@ -17,8 +17,7 @@ public class CarLocation {
     this.distance = distance;
   }
 
-  public CarLocation() {
-  }
+  public CarLocation() {}
 
   @Override
   public String toString() {

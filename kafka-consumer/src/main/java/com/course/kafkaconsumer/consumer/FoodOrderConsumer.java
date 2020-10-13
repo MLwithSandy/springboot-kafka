@@ -11,21 +11,21 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-//@Service
+// @Service
 public class FoodOrderConsumer {
 
-    private static final Logger log = LoggerFactory.getLogger(FoodOrderConsumer.class);
-    private ObjectMapper objectMapper = new ObjectMapper();
+  private static final Logger log = LoggerFactory.getLogger(FoodOrderConsumer.class);
+  private ObjectMapper objectMapper = new ObjectMapper();
 
-    private static final int MAX_AMOUNT_ORDER = 7;
+  private static final int MAX_AMOUNT_ORDER = 7;
 
-    @KafkaListener(topics = "t_food_order", errorHandler = "myFoodErrorHandler")
-    public void consume(String message) throws JsonParseException, JsonMappingException, IOException {
-        var foodOrder = objectMapper.readValue(message, FoodOrder.class);
+  @KafkaListener(topics = "t_food_order", errorHandler = "myFoodErrorHandler")
+  public void consume(String message) throws JsonParseException, JsonMappingException, IOException {
+    var foodOrder = objectMapper.readValue(message, FoodOrder.class);
 
-        if (foodOrder.getAmount() > MAX_AMOUNT_ORDER){
-            throw new IllegalArgumentException("Food order Amount is too many");
-        }
-        log.info("Food order valid: {}", foodOrder);
+    if (foodOrder.getAmount() > MAX_AMOUNT_ORDER) {
+      throw new IllegalArgumentException("Food order Amount is too many");
     }
+    log.info("Food order valid: {}", foodOrder);
+  }
 }

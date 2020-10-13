@@ -8,16 +8,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-//@Service
+// @Service
 public class EmployeeJsonConsumer {
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+  private ObjectMapper objectMapper = new ObjectMapper();
 
-    private static final Logger log = LoggerFactory.getLogger(EmployeeJsonConsumer.class);
+  private static final Logger log = LoggerFactory.getLogger(EmployeeJsonConsumer.class);
 
-    @KafkaListener(topics = "t_employee")
-    public void consume(String message) throws JsonProcessingException {
-        Employee emp = objectMapper.readValue(message, Employee.class);
-        log.info("Employee is {}", emp);
-    }
+  @KafkaListener(topics = "t_employee")
+  public void consume(String message) throws JsonProcessingException {
+    Employee emp = objectMapper.readValue(message, Employee.class);
+    log.info("Employee is {}", emp);
+  }
 }

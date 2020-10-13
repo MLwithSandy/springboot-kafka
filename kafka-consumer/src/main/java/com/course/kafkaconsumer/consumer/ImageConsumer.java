@@ -11,19 +11,18 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.http.HttpConnectTimeoutException;
 
-
-//@Service
+// @Service
 public class ImageConsumer {
-    private static final Logger log = LoggerFactory.getLogger(ImageConsumer.class);
-    private ObjectMapper objectMapper = new ObjectMapper();
+  private static final Logger log = LoggerFactory.getLogger(ImageConsumer.class);
+  private ObjectMapper objectMapper = new ObjectMapper();
 
-    @KafkaListener(topics = "t_image", containerFactory = "imageRetryContainerFactory")
-    public void consume(String message) throws JsonProcessingException, IOException {
-        var image = objectMapper.readValue(message, Image.class);
+  @KafkaListener(topics = "t_image", containerFactory = "imageRetryContainerFactory")
+  public void consume(String message) throws JsonProcessingException, IOException {
+    var image = objectMapper.readValue(message, Image.class);
 
-        if(image.getType().equalsIgnoreCase("svg")){
-            throw new HttpConnectTimeoutException("Simulate failed API call");
-        }
-        log.info("Processing image : {}", image);
+    if (image.getType().equalsIgnoreCase("svg")) {
+      throw new HttpConnectTimeoutException("Simulate failed API call");
     }
+    log.info("Processing image : {}", image);
+  }
 }

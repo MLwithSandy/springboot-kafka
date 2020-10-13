@@ -25,8 +25,7 @@ public class Invoice {
         + '}';
   }
 
-  public Invoice() {
-  }
+  public Invoice() {}
 
   public String getNumber() {
     return number;

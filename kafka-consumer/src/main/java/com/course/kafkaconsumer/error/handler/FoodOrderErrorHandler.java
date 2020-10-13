@@ -8,7 +8,7 @@ import org.springframework.kafka.listener.ListenerExecutionFailedException;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 
-@Service(value="myFoodErrorHandler")
+@Service(value = "myFoodErrorHandler")
 public class FoodOrderErrorHandler implements ConsumerAwareListenerErrorHandler {
 
   private static final Logger log = LoggerFactory.getLogger(FoodOrderErrorHandler.class);
@@ -20,7 +20,7 @@ public class FoodOrderErrorHandler implements ConsumerAwareListenerErrorHandler 
         "Food Order error. Pretending to sent to elasticSearch : {}, because : {}",
         message.getPayload(),
         e.getMessage());
-    if(e.getCause() instanceof RuntimeException){
+    if (e.getCause() instanceof RuntimeException) {
       throw e;
     }
     return null;

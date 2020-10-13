@@ -13,11 +13,10 @@ import java.util.List;
 @RequestMapping("/api/commodity/v1")
 public class CommodityApi {
 
-    @Autowired
-    private CommodityService commodityService;
+  @Autowired private CommodityService commodityService;
 
-    @GetMapping(value = "/all")
-    public List<Commodity> generateCommodities() {
-        return commodityService.createDummyCommodities();
-    }
+  @GetMapping(value = "/all")
+  public List<Commodity> generateCommodities() {
+    return commodityService.createDummyCommodities();
+  }
 }
