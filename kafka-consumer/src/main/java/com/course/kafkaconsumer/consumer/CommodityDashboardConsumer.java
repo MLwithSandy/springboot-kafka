@@ -22,7 +22,7 @@ public class CommodityDashboardConsumer {
             throws JsonProcessingException, JsonMappingException, IOException, InterruptedException {
         var commodity = objectMapper.readValue(message, Commodity.class);
 
-        Thread.sleep(ThreadLocalRandom.current().nextLong(500, 1000));
+//        Thread.sleep(ThreadLocalRandom.current().nextLong(500, 1000));
         log.info("Dashboard logic for {}", commodity);
     }
 }
