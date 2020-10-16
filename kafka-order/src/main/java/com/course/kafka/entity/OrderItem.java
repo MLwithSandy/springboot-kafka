@@ -16,6 +16,10 @@ public class OrderItem {
   @Column(nullable = false)
   private int quantity;
 
+  @JoinColumn(name = "order_id")
+  @ManyToOne
+  private Order order;
+
   @Override
   public String toString() {
     return "OrderItem{" +
@@ -35,9 +39,7 @@ public class OrderItem {
     this.order = order;
   }
 
-  @JoinColumn(name = "order_id")
-  @ManyToOne
-  private Order order;
+
 
   public int getOrderItemId() {
     return orderItemId;
