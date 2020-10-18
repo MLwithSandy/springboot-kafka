@@ -4,6 +4,7 @@ import com.course.kafka.broker.message.OrderMessage;
 import com.course.kafka.broker.message.OrderPatternMessage;
 import com.course.kafka.broker.message.OrderRewardMessage;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.kstream.KeyValueMapper;
 import org.apache.kafka.streams.kstream.Predicate;
 
@@ -58,5 +59,9 @@ public class CommoditySteamUtil {
 
   public static KeyValueMapper<String, OrderMessage, String> generateStorageKey() {
     return(key, value) -> Base64.getEncoder().encodeToString(value.getOrderNumber().getBytes());
+  }
+
+  public static KeyValueMapper<String, OrderMessage, KeyValue<String, OrderRewardMessage>> mapToOrderRewardChangeKey() {
+    return (key, value) -> KeyValue.pair(value.getOrderLocation(), mapToOrderReward(value));
   }
 }

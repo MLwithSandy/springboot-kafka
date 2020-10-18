@@ -17,7 +17,7 @@ import org.springframework.kafka.support.serializer.JsonSerde;
 import static com.course.kafka.util.CommoditySteamUtil.*;
 
 //@Configuration
-public class CommodityThreeStream {
+public class CommodityFourStream {
 
   @Bean
   public KStream<String, OrderMessage> kafkaCommodityTrading(StreamsBuilder builder) {
@@ -35,8 +35,8 @@ public class CommodityThreeStream {
     final var branchProducer = Produced.with(stringSerde, orderPatternSerde);
 
     new KafkaStreamBrancher<String, OrderPatternMessage>()
-            .branch(isPlastic(), kstream -> kstream.to("t.commodity.pattern-three.plastic", branchProducer))
-            .defaultBranch(kstream -> kstream.to("t.commodity.pattern-three.notplastic", branchProducer))
+            .branch(isPlastic(), kstream -> kstream.to("t.commodity.pattern-four.plastic", branchProducer))
+            .defaultBranch(kstream -> kstream.to("t.commodity.pattern-four.notplastic", branchProducer))
             .onTopOf(maskedOrderStream.mapValues(CommoditySteamUtil::mapToOrderPattern));
 
 
@@ -45,16 +45,16 @@ public class CommodityThreeStream {
         maskedOrderStream
             .filter(isLargeQuantity())
             .filterNot(isCheap())
-            .mapValues(CommoditySteamUtil::mapToOrderReward);
+            .map(CommoditySteamUtil.mapToOrderRewardChangeKey()); //change key and value both
 
-    rewardStream.to("t.commodity.reward-three", Produced.with(stringSerde, orderRewardSerde));
+    rewardStream.to("t.commodity.reward-four", Produced.with(stringSerde, orderRewardSerde));
 
     // 3rd sink stream to storage
     // no transformation
     KStream<String, OrderMessage> storageStream =
         maskedOrderStream.selectKey(generateStorageKey());
 
-    storageStream.to("t.commodity.storage-three", Produced.with(stringSerde, orderSerde));
+    storageStream.to("t.commodity.storage-four", Produced.with(stringSerde, orderSerde));
 
     // return any stream -> just return
     return maskedOrderStream;
